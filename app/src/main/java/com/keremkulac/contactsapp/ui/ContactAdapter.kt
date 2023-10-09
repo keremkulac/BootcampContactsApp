@@ -4,9 +4,11 @@ import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import com.keremkulac.contactsapp.R
 import com.keremkulac.contactsapp.data.Person
 import com.keremkulac.contactsapp.databinding.ContactItemBinding
 
@@ -15,14 +17,13 @@ class ContactAdapter(var context: Context,var personList: List<Person>) : Recycl
     inner class ViewHolder(var binding : ContactItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = ContactItemBinding.inflate(LayoutInflater.from(context),parent,false)
+        val view : ContactItemBinding= DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.contact_item,parent,false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val person = personList[position]
-        holder.binding.personName.text = person.personName
-        holder.binding.personPhoneNumber.text = person.personPhoneNumber
+        holder.binding.person = person
         holder.binding.cardViewRow.setOnClickListener {
             val direction = HomeFragmentDirections.actionHomeFragmentToContactDetailFragment(person)
             Navigation.findNavController(it).navigate(direction)
