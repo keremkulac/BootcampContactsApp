@@ -1,4 +1,4 @@
-package com.keremkulac.contactsapp.data
+package com.keremkulac.contactsapp.entity
 
 data class Person(
     var id : Int,

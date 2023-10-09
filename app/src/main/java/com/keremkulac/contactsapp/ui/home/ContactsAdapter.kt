@@ -1,7 +1,6 @@
-package com.keremkulac.contactsapp.ui
+package com.keremkulac.contactsapp.ui.home
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -9,15 +8,16 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.keremkulac.contactsapp.R
-import com.keremkulac.contactsapp.data.Person
-import com.keremkulac.contactsapp.databinding.ContactItemBinding
+import com.keremkulac.contactsapp.entity.Person
+import com.keremkulac.contactsapp.databinding.ContactsItemBinding
+import com.keremkulac.contactsapp.ui.HomeFragmentDirections
 
-class ContactAdapter(var context: Context,var personList: List<Person>) : RecyclerView.Adapter<ContactAdapter.ViewHolder>(){
+class ContactsAdapter(var context: Context, var personList: List<Person>, var viewModel : HomeViewModel) : RecyclerView.Adapter<ContactsAdapter.ViewHolder>(){
 
-    inner class ViewHolder(var binding : ContactItemBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class ViewHolder(var binding : ContactsItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view : ContactItemBinding= DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.contact_item,parent,false)
+        val view : ContactsItemBinding= DataBindingUtil.inflate(LayoutInflater.from(context),R.layout.contacts_item,parent,false)
         return ViewHolder(view)
     }
 
@@ -25,13 +25,14 @@ class ContactAdapter(var context: Context,var personList: List<Person>) : Recycl
         val person = personList[position]
         holder.binding.person = person
         holder.binding.cardViewRow.setOnClickListener {
-            val direction = HomeFragmentDirections.actionHomeFragmentToContactDetailFragment(person)
+            val direction =
+                HomeFragmentDirections.actionHomeFragmentToContactsDetailFragment(person)
             Navigation.findNavController(it).navigate(direction)
         }
         holder.binding.deleteContact.setOnClickListener {
             Snackbar.make(it,"${person.personName} silinsin mi?",Snackbar.LENGTH_SHORT)
                 .setAction("Evet"){
-                    delete(person.id)
+                    viewModel.deleteContacts(person.id)
                 }.show()
         }
     }
@@ -39,10 +40,4 @@ class ContactAdapter(var context: Context,var personList: List<Person>) : Recycl
     override fun getItemCount(): Int {
         return personList.size
     }
-
-    fun delete(id : Int){
-        Log.d("TAG","$id silindi")
-    }
-
-
 }

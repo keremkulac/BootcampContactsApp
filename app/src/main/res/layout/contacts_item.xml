@@ -5,7 +5,7 @@
     <data>
         <variable
             name="person"
-            type="com.keremkulac.contactsapp.data.Person" />
+            type="com.keremkulac.contactsapp.entity.Person" />
     </data>
 
     <LinearLayout
