@@ -3,8 +3,7 @@ package com.keremkulac.contactsapp.data.repository
 import com.keremkulac.contactsapp.entity.Person
 import com.keremkulac.contactsapp.data.dataSource.ContactsDataSource
 
-class ContactsRepository {
-    var contactsDataSource = ContactsDataSource()
+class ContactsRepository (var contactsDataSource: ContactsDataSource){
     suspend fun saveContacts(personName : String,personPhoneNumber : String) =
         contactsDataSource.saveContacts(personName,personPhoneNumber)
 

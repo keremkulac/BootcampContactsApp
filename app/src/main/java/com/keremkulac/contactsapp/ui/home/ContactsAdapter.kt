@@ -10,7 +10,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.keremkulac.contactsapp.R
 import com.keremkulac.contactsapp.entity.Person
 import com.keremkulac.contactsapp.databinding.ContactsItemBinding
-import com.keremkulac.contactsapp.ui.HomeFragmentDirections
+import com.keremkulac.contactsapp.util.switch
 
 class ContactsAdapter(var context: Context, var personList: List<Person>, var viewModel : HomeViewModel) : RecyclerView.Adapter<ContactsAdapter.ViewHolder>(){
 
@@ -27,7 +27,7 @@ class ContactsAdapter(var context: Context, var personList: List<Person>, var vi
         holder.binding.cardViewRow.setOnClickListener {
             val direction =
                 HomeFragmentDirections.actionHomeFragmentToContactsDetailFragment(person)
-            Navigation.findNavController(it).navigate(direction)
+            Navigation.switch(it,direction)
         }
         holder.binding.deleteContact.setOnClickListener {
             Snackbar.make(it,"${person.personName} silinsin mi?",Snackbar.LENGTH_SHORT)

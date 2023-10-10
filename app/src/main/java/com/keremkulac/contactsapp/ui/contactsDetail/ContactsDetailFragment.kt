@@ -10,9 +10,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.keremkulac.contactsapp.R
 import com.keremkulac.contactsapp.databinding.FragmentContactsDetailBinding
-import com.keremkulac.contactsapp.ui.ContactsDetailFragmentArgs
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class ContactsDetailFragment : Fragment() {
 
     private lateinit var binding : FragmentContactsDetailBinding

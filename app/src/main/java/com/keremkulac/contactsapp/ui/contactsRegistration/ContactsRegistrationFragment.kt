@@ -9,8 +9,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.keremkulac.contactsapp.R
 import com.keremkulac.contactsapp.databinding.FragmentContactsRegistrationBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class ContactsRegistrationFragment : Fragment() {
     private lateinit var binding : FragmentContactsRegistrationBinding
     private val viewModel by viewModels<ContactsRegistrationViewModel>()

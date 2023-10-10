@@ -22,9 +22,10 @@
         android:name="com.keremkulac.contactsapp.ui.contactsDetail.ContactsDetailFragment"
         android:label="fragment_contacts_detail"
         tools:layout="@layout/fragment_contacts_detail" >
+
         <argument
             android:name="person"
-            app:argType="com.keremkulac.contactsapp.data.Person" />
+            app:argType="com.keremkulac.contactsapp.entity.Person" />
     </fragment>
     <fragment
         android:id="@+id/contactsRegistrationFragment"

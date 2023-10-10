@@ -11,8 +11,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.keremkulac.contactsapp.R
 import com.keremkulac.contactsapp.databinding.FragmentHomeBinding
+import com.keremkulac.contactsapp.util.switch
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
 
@@ -44,8 +46,7 @@ class HomeFragment : Fragment() {
 
 
     fun newContact(view : View){
-        Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_contactsRegistrationFragment)
-
+        Navigation.switch(view,R.id.action_homeFragment_to_contactsRegistrationFragment)
     }
 
     override fun onResume() {

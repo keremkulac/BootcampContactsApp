@@ -4,12 +4,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.keremkulac.contactsapp.data.repository.ContactsRepository
 import com.keremkulac.contactsapp.entity.Person
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeViewModel : ViewModel() {
-    private val contactsRepository = ContactsRepository()
+@HiltViewModel
+class HomeViewModel @Inject constructor(var contactsRepository: ContactsRepository): ViewModel() {
+
     val personList = MutableLiveData<List<Person>>()
 
     init {
